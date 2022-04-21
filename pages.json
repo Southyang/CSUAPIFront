@@ -1,0 +1,92 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "功能页",
+				"navigationStyle":"custom"
+			}
+		}, {
+			"path": "pages/notices/notices",
+			"style": {
+				"navigationBarTitleText": "资讯页",
+				"navigationStyle":"custom",
+				"enablePullDownRefresh": true
+			}
+
+		}, {
+			"path": "pages/me/me",
+			"style": {
+				"navigationBarTitleText": "个人页",
+				"navigationStyle":"custom",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	    ,{
+            "path" : "pages/notices/getnotice/getnotice",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "校内通知",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/me/profile/profile",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "个人资料",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/me/about/about",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "关于我们",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/me/contact/contact",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "问题反馈",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "CSUAPIFront",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#f1f1f1"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#007AFF",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"text": "功能",
+			"iconPath": "static/logo.png",
+			"selectedIconPath": "static/logo.png"
+
+		}, {
+			"pagePath": "pages/notices/notices",
+			"text": "资讯",
+			"iconPath": "static/logo.png",
+			"selectedIconPath": "static/logo.png"
+		}, {
+			"pagePath": "pages/me/me",
+			"text": "个人",
+			"iconPath": "static/logo.png",
+			"selectedIconPath": "static/logo.png"
+		}]
+	}
+}

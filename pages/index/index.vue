@@ -9,7 +9,6 @@
 			</view>
 			<view class="uni-panel-c" v-if="item.open">
 				<view
-					:class="{'left-win-active': leftWinActive === item2.url && hasLeftWin, 'pc-hide': item2.name === '设置TabBar' && hasLeftWin}"
 					class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" :url="item.url"
 					@click="goDetailPage(item.id, item2.url)">
 					<text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
@@ -22,14 +21,6 @@
 
 <script>
 	export default {
-		props: {
-			hasLeftWin: {
-				type: Boolean
-			},
-			leftWinActive: {
-				type: String
-			}
-		},
 		data() {
 			return {
 				list: [{
@@ -52,7 +43,7 @@
 					open: false,
 					pages: [{
 						name: '座位查询',
-						url: ''
+						url: 'lib/seat/seat'
 					}, {
 						name: '预约记录',
 						url: ''
@@ -63,7 +54,7 @@
 					open: false,
 					pages: [{
 						name: '班车查询',
-						url: ''
+						url: 'other/bus/bus'
 					}]
 				}],
 			}
@@ -82,21 +73,10 @@
 					}
 				}
 			},
-			goDetailPage(panel, e) {
-				if (e === 'set-tabbar') {
-					this.showSetTabBarPage = true;
-					return;
-				}
-				let url = ~e.indexOf('platform') ? e : '/pages/API/' + e + '/' + e;
-				if (this.hasLeftWin) {
-					uni.reLaunch({
-						url: url
-					})
-				} else {
-					uni.navigateTo({
-						url: url
-					})
-				}
+			goDetailPage(panel, url) {
+				uni.navigateTo({
+					url: url
+				})
 			},
 		}
 	}

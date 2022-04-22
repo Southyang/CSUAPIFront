@@ -5,6 +5,7 @@
 </template>
 
 <script>
+	let app = getApp()
 	export default {
 		data() {
 			return {
@@ -16,6 +17,7 @@
 		},
 		onLoad(option) {
 			let that = this
+			app.isloading()
 			uni.request({
 				url: `${getApp().globalData.BaseUrl}/notice/article/${option.link}`, // 
 				method: 'GET',
@@ -23,6 +25,7 @@
 					if(res.data.StateCode === 1){
 						that.content = res.data.Content.replace("style=\"width:690px;\"","")
 					}
+					app.noloading()
 				},
 				fail: (err) => {
 					console.log(err)

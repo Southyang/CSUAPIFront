@@ -168,7 +168,7 @@
 			},
 			checkBus(){
 				let that = this
-				console.log(this.index, this.index1, this.timearray[this.index2].name)
+				// console.log(this.index, this.index1, this.timearray[this.index2].name)
 				app.isloading()
 				uni.request({
 					url: `${getApp().globalData.BaseUrl}/bus/${this.index}/${this.index1}/${this.timearray[this.index2].name}`, // 
@@ -178,7 +178,7 @@
 							// console.log(res.data)
 							that.bus = res.data.Bus
 							that.initData()
-							console.log(that.bus)
+							// console.log(that.bus)
 						}
 						app.noloading()
 					},

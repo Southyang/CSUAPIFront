@@ -37,7 +37,11 @@
 					userName: this.userName,
 					password: this.password,
 				});
-				console.log("保存信息")
+				// console.log("保存信息")
+				uni.showToast({
+					title: '保存成功',
+					duration: 3000
+				});
 			},
 		},
 		onLoad() {

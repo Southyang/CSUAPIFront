@@ -28,19 +28,28 @@
 		},
 		methods: {
 			tolib1(place){
-				console.log("新校区图书馆",place)
+				// console.log("新校区图书馆",place)
 				uni.navigateTo({
-					url: `floorseat/floorseat?place=${place}`
+					url: `floorseat/floorseat?place=${place}&name=新校区`
 				});
 			},
 			tolib2(place){
-				console.log("校本部")
+				// console.log("校本部")
+				uni.navigateTo({
+					url: `floorseat/floorseat?place=${place}&name=本部校区`
+				});
 			},
 			tolib3(place){
-				console.log("铁道")
+				// console.log("铁道")
+				uni.navigateTo({
+					url: `floorseat/floorseat?place=${place}&name=铁道校区`
+				});
 			},
 			tolib4(place){
-				console.log("湘雅新校区")
+				// console.log("湘雅新校区")
+				uni.navigateTo({
+					url: `floorseat/floorseat?place=${place}&name=湘雅新校区`
+				});
 			}
 		}
 	}

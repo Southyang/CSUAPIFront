@@ -7,7 +7,8 @@
 		<view class="line"></view>
 		<view class="content">
 			<view v-if="current === 0" class="content_text">
-				<view class="notice_content" v-for="(text1_item, index) in content_text1" :key="index" @click="getNotice(text1_item.Link)">
+				<view class="notice_content" v-for="(text1_item, index) in content_text1" :key="index"
+					@click="getNotice(text1_item.Link)">
 					<p class="notice_title">{{text1_item.Title}}</p>
 					<view>
 						<text class="notice_info">{{text1_item.Time}}</text>
@@ -18,14 +19,14 @@
 				</view>
 			</view>
 			<view v-if="current === 1" class="content_text">
-				在开发了
-				<view class="notice_content" v-for="(text2_item, index) in content_text2" :key="index">
-					<!-- <p class="notice_title">{{text2_item.Title}}</p>
+				<view class="notice_content" v-for="(text2_item, index) in content_text2" :key="index"
+				@click="getJwcNotice(text2_item.Link)">
+					<p class="notice_title">{{text2_item.Title}}</p>
 					<view>
 						<text class="notice_info">{{text2_item.Time}}</text>
 						<text class="notice_info">{{text2_item.Dept}}</text>
 					</view>
-					<view class="line"></view> -->
+					<view class="line"></view>
 				</view>
 			</view>
 		</view>
@@ -40,52 +41,59 @@
 			return {
 				items: ['校内通知', '教务通知'],
 				current: 0,
-				pageId:0,
-				nofresh:true,
+				pageId: 0,
+				jwcPageId: 1,
+				nofresh: true,
 				activeColor: '#007aff',
 				styleType: 'button',
 				content_text1: [],
-				content_text2: [{
-						"Title": "测试教务标题",
-						"Dept": "发布部门",
-						"Time": "2022-04-21",
-						"Link": "123456789"
-					},
-					{
-						"Title": "测试教务标题1",
-						"Dept": "发布部门1",
-						"Time": "2022-04-21",
-						"Link": "123456789"
-					},
-					{
-						"Title": "测试教务标题2",
-						"Dept": "发布部门2",
-						"Time": "2022-04-21",
-						"Link": "123456789"
-					}
-				],
+				content_text2: [],
 			}
 		},
 		methods: {
 			onClickItem(e) {
-				if (this.current !== e.currentIndex) {
-					this.current = e.currentIndex
-				}
+				this.current = e.currentIndex
 			},
-			getNotice(link){
+			getNotice(link) {
 				uni.navigateTo({
 					url: `getnotice/getnotice?link=${link}`
 				});
 			},
-			getNoticesList(){
+			getJwcNotice(){
+				uni.showToast({
+					title: '在开发了！',
+					image: '../../static/image/notice/weep.png',
+					duration: 3000
+				});
+			},
+			getNoticesList() {
 				app.isloading()
 				uni.request({
 					url: `${getApp().globalData.BaseUrl}/notice/list/${this.pageId}`, // 0是第0页
 					method: 'GET',
 					success: (res) => {
-						if(res.data.StateCode === 1){
-							this.content_text1 = [...this.content_text1,...res.data.NoticeList.Notices]
+						if (res.data.StateCode === 1) {
+							this.content_text1 = [...this.content_text1, ...res.data.NoticeList.Notices]
 							this.pageId = this.pageId + 1;
+							app.noloading()
+						}
+					},
+					fail: (err) => {
+						console.log(err)
+					}
+				})
+			},
+			getJwcNoticesList() {
+				let userInfo = uni.getStorageSync('userInfo');
+				app.isloading()
+				uni.request({
+					url: `${getApp().globalData.BaseUrl}/jwc/${userInfo.userName}/${userInfo.password}/notice/list/${this.jwcPageId}`, // 1是第0页
+					method: 'GET',
+					success: (res) => {
+						// console.log(res.data)
+						if (res.data.StateCode === 1) {
+							this.content_text2 = [...this.content_text2, ...res.data.JwcNoticeList.Notices]
+							this.jwcPageId = this.jwcPageId + 1;
 							app.noloading()
 						}
 					},
@@ -95,18 +103,26 @@
 				})
 			}
 		},
-		onReachBottom(){
+		onReachBottom() {
 			let that = this
-			if(that.nofresh){
-				that.nofresh = false
-				this.getNoticesList()
-				setTimeout(()=>{
+			if (this.nofresh) {
+				this.nofresh = false
+				if (this.current === 0) {
+					this.getNoticesList()
+				} else {
+					uni.showToast({
+						title: '已经翻到底啦',
+						duration: 3000
+					});
+				}
+				setTimeout(() => {
 					that.nofresh = true
-				},3000)
+				}, 3000)
 			}
 		},
 		onLoad() {
 			this.getNoticesList()
+			this.getJwcNoticesList()
 		}
 	}
 </script>
@@ -122,7 +138,7 @@
 
 	.uni-padding-wrap {
 		// width: 750rpx;
-		padding: 0px 30px;
+		// padding: 0px 30px;
 	}
 
 	.content {

@@ -122,6 +122,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/index/lib/seat/floorseat/areaseat/areaseat",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -137,19 +146,19 @@
 		"list": [{
 			"pagePath": "pages/index/index",
 			"text": "功能",
-			"iconPath": "static/logo.png",
-			"selectedIconPath": "static/logo.png"
+			"iconPath": "static/image/function.png",
+			"selectedIconPath": "static/image/function_active.png"
 
 		}, {
 			"pagePath": "pages/notices/notices",
 			"text": "资讯",
-			"iconPath": "static/logo.png",
-			"selectedIconPath": "static/logo.png"
+			"iconPath": "static/image/infor.png",
+			"selectedIconPath": "static/image/infor_active.png"
 		}, {
 			"pagePath": "pages/me/me",
 			"text": "个人",
-			"iconPath": "static/logo.png",
-			"selectedIconPath": "static/logo.png"
+			"iconPath": "static/image/person.png",
+			"selectedIconPath": "static/image/person_active.png"
 		}]
 	}
 }

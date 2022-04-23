@@ -19,7 +19,7 @@
 		},
 		methods: {
 			giveFeedback() {
-				console.log("跳转到公众号后台")
+				// console.log("跳转到公众号后台")
 			}
 		}
 	}

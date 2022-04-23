@@ -44,19 +44,19 @@
 		},
 		methods: {
 			toProfile(){
-				console.log("toProfile")
+				// console.log("toProfile")
 				uni.navigateTo({
 					url: `profile/profile`
 				});
 			},
 			toAbout(){
-				console.log("toAbout")
+				// console.log("toAbout")
 				uni.navigateTo({
 					url: `about/about`
 				});
 			},
 			toContact(){
-				console.log("toContact")
+				// console.log("toContact")
 				uni.navigateTo({
 					url: `contact/contact`
 				});

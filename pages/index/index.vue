@@ -29,13 +29,13 @@
 					open: false,
 					pages: [{
 						name: '查成绩',
-						url: ''
+						url: 'jwc/grade/grade'
 					}, {
 						name: '查排名',
-						url: ''
+						url: 'jwc/rank/rank'
 					}, {
 						name: '查课表',
-						url: ''
+						url: 'jwc/course/course'
 					}]
 				}, {
 					id: 'lib',

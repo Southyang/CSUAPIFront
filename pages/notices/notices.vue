@@ -20,7 +20,7 @@
 			</view>
 			<view v-if="current === 1" class="content_text">
 				<view class="notice_content" v-for="(text2_item, index) in content_text2" :key="index"
-				@click="getJwcNotice(text2_item.Link)">
+					@click="getJwcNotice(text2_item.Link)">
 					<p class="notice_title">{{text2_item.Title}}</p>
 					<view>
 						<text class="notice_info">{{text2_item.Time}}</text>
@@ -48,18 +48,37 @@
 				styleType: 'button',
 				content_text1: [],
 				content_text2: [],
+				isNoinfo: false
 			}
 		},
 		methods: {
 			onClickItem(e) {
 				this.current = e.currentIndex
+				if(this.isNoinfo){
+					this.getJwcNoticesList()
+				}
+				if (this.current == 1 && this.isNoinfo) {
+					uni.showModal({
+						title: "小提示",
+						content: "微信缓存中没有您的信息呢\n去填写",
+						confirmText: "好耶！",
+						cancelText: "不去！",
+						success: function(res) {
+							if (res.confirm) {
+								uni.navigateTo({
+									url: `../me/profile/profile`
+								});
+							}
+						}
+					})
+				}
 			},
 			getNotice(link) {
 				uni.navigateTo({
 					url: `getnotice/getnotice?link=${link}`
 				});
 			},
-			getJwcNotice(){
+			getJwcNotice() {
 				uni.showToast({
 					title: '在开发了！',
 					image: '../../static/image/notice/weep.png',
@@ -84,23 +103,28 @@
 				})
 			},
 			getJwcNoticesList() {
+				this.isNoinfo = false
 				let userInfo = uni.getStorageSync('userInfo');
-				app.isloading()
-				uni.request({
-					url: `${getApp().globalData.BaseUrl}/jwc/${userInfo.userName}/${userInfo.password}/notice/list/${this.jwcPageId}`, // 1是第0页
-					method: 'GET',
-					success: (res) => {
-						// console.log(res.data)
-						if (res.data.StateCode === 1) {
-							this.content_text2 = [...this.content_text2, ...res.data.JwcNoticeList.Notices]
-							this.jwcPageId = this.jwcPageId + 1;
-							app.noloading()
+				if (userInfo.userName) {
+					app.isloading()
+					uni.request({
+						url: `${getApp().globalData.BaseUrl}/jwc/${userInfo.userName}/${userInfo.password}/notice/list/${this.jwcPageId}`, // 1是第0页
+						method: 'GET',
+						success: (res) => {
+							// console.log(res.data)
+							if (res.data.StateCode === 1) {
+								this.content_text2 = [...this.content_text2, ...res.data.JwcNoticeList.Notices]
+								this.jwcPageId = this.jwcPageId + 1;
+								app.noloading()
+							}
+						},
+						fail: (err) => {
+							console.log(err)
 						}
-					},
-					fail: (err) => {
-						console.log(err)
-					}
-				})
+					})
+				} else {
+					this.isNoinfo = true
+				}
 			}
 		},
 		onReachBottom() {

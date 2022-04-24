@@ -63,7 +63,7 @@
             "path" : "pages/index/jwc/grade/grade",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "成绩",
                 "enablePullDownRefresh": false
             }
             
@@ -72,7 +72,7 @@
             "path" : "pages/index/jwc/rank/rank",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "排名",
                 "enablePullDownRefresh": false
             }
             
@@ -81,7 +81,7 @@
             "path" : "pages/index/jwc/course/course",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "课表",
                 "enablePullDownRefresh": false
             }
             
@@ -124,6 +124,15 @@
         }
         ,{
             "path" : "pages/index/lib/seat/floorseat/areaseat/areaseat",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/index/jwc/grade/detailGrade/detailGrade",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",

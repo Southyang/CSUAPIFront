@@ -22,7 +22,7 @@
 				url: `${getApp().globalData.BaseUrl}/notice/article/${option.link}`, // 
 				method: 'GET',
 				success: (res) => {
-					if(res.data.StateCode === 1){
+					if(res.data.StatusCode === 1){
 						that.content = res.data.Content.replace("style=\"width:690px;\"","")
 					}
 					app.noloading()

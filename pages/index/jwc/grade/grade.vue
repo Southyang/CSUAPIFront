@@ -35,7 +35,7 @@
 						success: (res) => {
 							// console.log(res.data)
 							if (res.data.StatusCode === 1) {
-								this.grade = res.data.Grade
+								this.grade = res.data.Grade.reverse()
 								app.noloading()
 							}
 						},

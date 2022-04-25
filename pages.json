@@ -140,6 +140,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/notices/getjwcnotice/getjwcnotice",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "教务通知",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

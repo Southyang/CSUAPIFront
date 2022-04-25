@@ -78,11 +78,14 @@
 					url: `getnotice/getnotice?link=${link}`
 				});
 			},
-			getJwcNotice() {
-				uni.showToast({
-					title: '在开发了！',
-					image: '../../static/image/notice/weep.png',
-					duration: 3000
+			getJwcNotice(link) {
+				// uni.showToast({
+				// 	title: '在开发了！',
+				// 	image: '../../static/image/notice/weep.png',
+				// 	duration: 3000
+				// });
+				uni.navigateTo({
+					url: `getjwcnotice/getjwcnotice?link=${link}`
 				});
 			},
 			getNoticesList() {
@@ -91,7 +94,7 @@
 					url: `${getApp().globalData.BaseUrl}/notice/list/${this.pageId}`, // 0是第0页
 					method: 'GET',
 					success: (res) => {
-						if (res.data.StateCode === 1) {
+						if (res.data.StatusCode === 1) {
 							this.content_text1 = [...this.content_text1, ...res.data.NoticeList.Notices]
 							this.pageId = this.pageId + 1;
 							app.noloading()
@@ -112,7 +115,7 @@
 						method: 'GET',
 						success: (res) => {
 							// console.log(res.data)
-							if (res.data.StateCode === 1) {
+							if (res.data.StatusCode === 1) {
 								this.content_text2 = [...this.content_text2, ...res.data.JwcNoticeList.Notices]
 								this.jwcPageId = this.jwcPageId + 1;
 								app.noloading()

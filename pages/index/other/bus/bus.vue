@@ -183,7 +183,13 @@
 						app.noloading()
 					},
 					fail: (err) => {
-						console.log(err)
+						// console.log(err)
+						uni.showToast({
+							title: '服务器好像挂了诶\n要不再试一次？',
+							image: '../../../../static/image/notice/weep.png',
+							duration: 3000
+						});
+						app.noloading()
 					}
 				})
 			}

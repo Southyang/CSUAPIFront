@@ -14,13 +14,14 @@
 			</view>
 		</view>
 		<view class="week_info">
-			<view v-for="(week_item, index) in weeks" :key="index"  class="week_info_text">
+			<view v-for="(week_item, index) in weeks" :key="index" class="week_info_text">
 				<view>{{week_item}}</view>
 			</view>
 		</view>
 
 		<view class="course">
-			<view v-for="(course_item1, index) in course1" :key="index" class="course_item">
+			<view v-for="(course_item1, index) in course1" :key="index" class="course_item"
+				:style="{'background-color':course_item1[0].ClassName != ''?'#d9f7ff':''}">
 				<view class="course_item_name">{{course_item1[0].ClassName}}&nbsp</view>
 				<view>
 					<view>{{course_item1[0].Place}}&nbsp</view>
@@ -29,7 +30,8 @@
 			</view>
 		</view>
 		<view class="course">
-			<view v-for="(course_item2, index) in course2" :key="index" class="course_item">
+			<view v-for="(course_item2, index) in course2" :key="index" class="course_item"
+			:style="{'background-color':course_item2[0].ClassName != ''?'#b9ffbf':''}">
 				<view class="course_item_name">{{course_item2[0].ClassName}}&nbsp</view>
 				<view>
 					<view>{{course_item2[0].Place}}&nbsp</view>
@@ -38,7 +40,8 @@
 			</view>
 		</view>
 		<view class="course">
-			<view v-for="(course_item3, index) in course3" :key="index" class="course_item">
+			<view v-for="(course_item3, index) in course3" :key="index" class="course_item"
+			:style="{'background-color':course_item3[0].ClassName != ''?'#c4c8ff':''}">
 				<view class="course_item_name">{{course_item3[0].ClassName}}&nbsp</view>
 				<view>
 					<view>{{course_item3[0].Place}}&nbsp</view>
@@ -47,7 +50,8 @@
 			</view>
 		</view>
 		<view class="course">
-			<view v-for="(course_item4, index) in course4" :key="index" class="course_item">
+			<view v-for="(course_item4, index) in course4" :key="index" class="course_item"
+			:style="{'background-color':course_item4[0].ClassName != ''?'#fffdb9':''}">
 				<view class="course_item_name">{{course_item4[0].ClassName}}&nbsp</view>
 				<view>
 					<view>{{course_item4[0].Place}}&nbsp</view>
@@ -56,7 +60,8 @@
 			</view>
 		</view>
 		<view class="course">
-			<view v-for="(course_item5, index) in course5" :key="index" class="course_item">
+			<view v-for="(course_item5, index) in course5" :key="index" class="course_item"
+			:style="{'background-color':course_item5[0].ClassName != ''?'#ff6b60':''}">
 				<view class="course_item_name">{{course_item5[0].ClassName}}&nbsp</view>
 				<view>
 					<view>{{course_item5[0].Place}}&nbsp</view>
@@ -65,7 +70,8 @@
 			</view>
 		</view>
 		<view class="course">
-			<view v-for="(course_item6, index) in course6" :key="index" class="course_item">
+			<view v-for="(course_item6, index) in course6" :key="index" class="course_item"
+			:style="{'background-color':course_item6[0].ClassName != ''?'#e355ff':''}">
 				<view class="course_item_name">{{course_item6[0].ClassName}}&nbsp</view>
 				<view>
 					<view>{{course_item6[0].Place}}&nbsp</view>
@@ -154,6 +160,18 @@
 				course5: [],
 				course6: [],
 			}
+		},
+		computed: {
+			getRandomColor: function() {
+				const rgb = []
+			 for (let i = 0; i < 3; ++i) {
+					let color = Math.floor(Math.random() * 256).toString(16)
+					color = color.length == 1 ? '0' + color : color
+					rgb.push(color)
+				}
+				return '#' + rgb.join('')
+			}
+
 		},
 		methods: {
 			bindPickerChange: function(e) {
@@ -255,7 +273,7 @@
 
 	.course_item {
 		margin: 2px;
-		background-color: #d9f7ff;
+		/* background-color: #d9f7ff; */
 		width: 14vw;
 		height: 20vh;
 		font-size: 10px;
@@ -264,5 +282,9 @@
 		flex-direction: column;
 		/* align-items: center; */
 		justify-content: space-between;
+	}
+
+	.active {
+		background-color: #d9f7ff;
 	}
 </style>

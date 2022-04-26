@@ -52,6 +52,9 @@
 				</view>
 			</view>
 		</view>
+		<scroll-view scroll-x="true">
+			<image class="bus_image" src="../../../../static/image/other/bus.png"></image>
+		</scroll-view>
 	</view>
 </template>
 
@@ -137,9 +140,9 @@
 				index: 0,
 				index1: 0,
 				index2: 0,
-				bus:[],
-				isempty:false,
-				hasbus:false
+				bus: [],
+				isempty: false,
+				hasbus: false
 			}
 		},
 		methods: {
@@ -156,42 +159,47 @@
 				// console.log(this.timearray[e.detail.value].name)
 				this.index2 = e.detail.value
 			},
-			initData(){
+			initData() {
 				this.isempty = this.hasbus = false
-				if(this.bus.length === 1){
-					if(!this.bus[0].Num.trim()){
+				if (this.bus.length === 1) {
+					if (!this.bus[0].Num.trim()) {
 						this.isempty = true
 						return
 					}
 				}
 				this.hasbus = true
 			},
-			checkBus(){
-				let that = this
-				// console.log(this.index, this.index1, this.timearray[this.index2].name)
-				app.isloading()
-				uni.request({
-					url: `${getApp().globalData.BaseUrl}/bus/${this.index}/${this.index1}/${this.timearray[this.index2].name}`, // 
-					method: 'GET',
-					success: (res) => {
-						if(res.data.StatusCode === 1){
-							// console.log(res.data)
-							that.bus = res.data.Bus
-							that.initData()
-							// console.log(that.bus)
-						}
-						app.noloading()
-					},
-					fail: (err) => {
-						// console.log(err)
-						uni.showToast({
-							title: '服务器好像挂了诶\n要不再试一次？',
-							image: '../../../../static/image/notice/weep.png',
-							duration: 3000
-						});
-						app.noloading()
-					}
-				})
+			checkBus() {
+				// let that = this
+				// // console.log(this.index, this.index1, this.timearray[this.index2].name)
+				// app.isloading()
+				// uni.request({
+				// 	url: `${getApp().globalData.BaseUrl}/bus/${this.index}/${this.index1}/${this.timearray[this.index2].name}`, // 
+				// 	method: 'GET',
+				// 	success: (res) => {
+				// 		if(res.data.StatusCode === 1){
+				// 			// console.log(res.data)
+				// 			that.bus = res.data.Bus
+				// 			that.initData()
+				// 			// console.log(that.bus)
+				// 		}
+				// 		app.noloading()
+				// 	},
+				// 	fail: (err) => {
+				// 		// console.log(err)
+				// 		uni.showToast({
+				// 			title: '服务器好像挂了诶\n要不再试一次？',
+				// 			image: '../../../../static/image/notice/weep.png',
+				// 			duration: 3000
+				// 		});
+				// 		app.noloading()
+				// 	}
+				// })
+				uni.showToast({
+					title: '学校的服务关了\n直接看图吧!',
+					image: '../../../../static/image/notice/weep.png',
+					duration: 3000
+				});
 			}
 		}
 	}
@@ -199,23 +207,32 @@
 
 <style>
 	@import url("../../../../common/uni.css");
-	.isempty{
+
+	.isempty {
 		text-align: center;
 		margin-top: 10px;
 	}
-	.businfo{
+
+	.businfo {
 		margin: 10px 0;
 		background-color: #FFFFFF;
 		border-radius: 10px;
 	}
-	.info_content{
+
+	.info_content {
 		margin: 0 10px;
 		padding: 10px 0;
 	}
+
 	.line {
 		background: #E0E3DA;
 		width: 100%;
 		height: 5rpx;
 		margin: 8px 0;
+	}
+	
+	.bus_image{
+		width: 800px;
+		height: 10000px;
 	}
 </style>

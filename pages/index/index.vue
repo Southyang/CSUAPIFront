@@ -15,7 +15,7 @@
 				</view>
 			</view>
 		</view>
-		<button @click="getics">ics</button>
+		<!-- <button @click="getics">ics</button> -->
 	</view>
 </template>
 

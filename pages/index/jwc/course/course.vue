@@ -190,7 +190,7 @@
 			},
 			addInDate() {
 				uni.showToast({
-					title: '在开发了！',
+					title: '马上!\n4.30考完试就开发',
 					image: '../../../../static/image/notice/weep.png',
 					duration: 3000
 				});

@@ -8,14 +8,14 @@
 					:class="item.open ? 'uni-panel-icon-on' : ''">{{item.pages ? '∨' : '&#xe470;'}}</text>
 			</view>
 			<view class="uni-panel-c" v-if="item.open">
-				<view
-					class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" :url="item.url"
+				<view class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" :url="item.url"
 					@click="goDetailPage(item.id, item2.url)">
 					<text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
 					<text class="uni-navigate-icon uni-icon">></text>
 				</view>
 			</view>
 		</view>
+		<button @click="getics">ics</button>
 	</view>
 </template>
 
@@ -78,6 +78,38 @@
 					url: url
 				})
 			},
+			getics() {
+				let startTime = "20221013T110500";
+				let endTime = "20221013T130500";
+				let location = "测试地点";
+				let description = "测试描述信息，由southyang.cn@CSU导入"
+				let alarm = "20221013T024500"
+				let summary = "测试标题@" + location
+				let uid = "ics-i@southyang.cn"
+
+				let icsMSGHeader = "BEGIN:VCALENDAR\nVERSION:1.0\nTZ:+08:00\n"
+
+				let icsMsgFooter = "END:VCALENDAR"
+
+				let icsMsg = "BEGIN:VEVENT\nCOMPLETED:" + endTime + "\nDTSTART:" + startTime + "\nCLASS:PUBLIC\nDTEND:" + endTime +
+					"\nDESCRIPTION:" + description + "\nLOCATION:" + location + "\nSUMMARY:" + summary + "\nAALARM:" + alarm +
+					";;;\nEVENTTYPEEXT:NORMALEVENTTYPE\nEVENTALERTTYPE:NORMALALERT\nEVENTCALENDARTYPE:SOLAR\nEND:VEVENT\n";
+
+				let finalIcsMsg = icsMSGHeader + icsMsg + icsMsgFooter
+
+				// console.log(finalIcsMsg)
+
+				let element = document.createElement('a')
+				element.setAttribute('href', 'data:text/calendar;charset=utf8,' + encodeURIComponent(finalIcsMsg))
+				element.setAttribute('download', "course.ics")
+				element.style.display = 'none'
+				document.body.appendChild(element)
+				element.click()
+				document.body.removeChild(element)
+			}
+		},
+		onLoad() {
+
 		}
 	}
 </script>

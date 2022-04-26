@@ -31,7 +31,7 @@
 		</view>
 		<view class="course">
 			<view v-for="(course_item2, index) in course2" :key="index" class="course_item"
-			:style="{'background-color':course_item2[0].ClassName != ''?'#b9ffbf':''}">
+				:style="{'background-color':course_item2[0].ClassName != ''?'#b9ffbf':''}">
 				<view class="course_item_name">{{course_item2[0].ClassName}}&nbsp</view>
 				<view>
 					<view>{{course_item2[0].Place}}&nbsp</view>
@@ -41,7 +41,7 @@
 		</view>
 		<view class="course">
 			<view v-for="(course_item3, index) in course3" :key="index" class="course_item"
-			:style="{'background-color':course_item3[0].ClassName != ''?'#c4c8ff':''}">
+				:style="{'background-color':course_item3[0].ClassName != ''?'#c4c8ff':''}">
 				<view class="course_item_name">{{course_item3[0].ClassName}}&nbsp</view>
 				<view>
 					<view>{{course_item3[0].Place}}&nbsp</view>
@@ -51,7 +51,7 @@
 		</view>
 		<view class="course">
 			<view v-for="(course_item4, index) in course4" :key="index" class="course_item"
-			:style="{'background-color':course_item4[0].ClassName != ''?'#fffdb9':''}">
+				:style="{'background-color':course_item4[0].ClassName != ''?'#fffdb9':''}">
 				<view class="course_item_name">{{course_item4[0].ClassName}}&nbsp</view>
 				<view>
 					<view>{{course_item4[0].Place}}&nbsp</view>
@@ -61,7 +61,7 @@
 		</view>
 		<view class="course">
 			<view v-for="(course_item5, index) in course5" :key="index" class="course_item"
-			:style="{'background-color':course_item5[0].ClassName != ''?'#ff6b60':''}">
+				:style="{'background-color':course_item5[0].ClassName != ''?'#ff6b60':''}">
 				<view class="course_item_name">{{course_item5[0].ClassName}}&nbsp</view>
 				<view>
 					<view>{{course_item5[0].Place}}&nbsp</view>
@@ -71,7 +71,7 @@
 		</view>
 		<view class="course">
 			<view v-for="(course_item6, index) in course6" :key="index" class="course_item"
-			:style="{'background-color':course_item6[0].ClassName != ''?'#e355ff':''}">
+				:style="{'background-color':course_item6[0].ClassName != ''?'#e355ff':''}">
 				<view class="course_item_name">{{course_item6[0].ClassName}}&nbsp</view>
 				<view>
 					<view>{{course_item6[0].Place}}&nbsp</view>
@@ -164,7 +164,7 @@
 		computed: {
 			getRandomColor: function() {
 				const rgb = []
-			 for (let i = 0; i < 3; ++i) {
+				for (let i = 0; i < 3; ++i) {
 					let color = Math.floor(Math.random() * 256).toString(16)
 					color = color.length == 1 ? '0' + color : color
 					rgb.push(color)
@@ -218,7 +218,13 @@
 							}
 						},
 						fail: (err) => {
-							console.log(err)
+							// console.log(err)
+							uni.showToast({
+								title: '服务器好像挂了诶\n要不再试一次？',
+								image: '../../../../static/image/notice/weep.png',
+								duration: 3000
+							});
+							app.noloading()
 						}
 					})
 				} else {

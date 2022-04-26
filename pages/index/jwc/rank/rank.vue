@@ -13,20 +13,37 @@
 </template>
 
 <script>
+	import * as XLSX from '../../../../utils/xlsx.core.min.js'
 	let app = getApp()
 	export default {
 		data() {
 			return {
-				rank:[]
+				rank: [],
+				exportRank: []
 			}
 		},
 		methods: {
-			download(){
-				uni.showToast({
-					title: '在开发了！',
-					image: '../../../../static/image/notice/weep.png',
-					duration: 3000
-				});
+			download() {
+				let rankString = JSON.stringify(this.rank)
+				let subStr = new RegExp('Term', 'ig'); //创建正则表达式对象,不区分大小写,全局查找
+				let subStr1 = new RegExp('TotalScore', 'ig'); //创建正则表达式对象,不区分大小写,全局查找
+				let subStr2 = new RegExp('ClassRank', 'ig'); //创建正则表达式对象,不区分大小写,全局查找
+				let subStr3 = new RegExp('AverScore', 'ig'); //创建正则表达式对象,不区分大小写,全局查找
+
+				rankString = rankString.replace(subStr, "学期").replace(subStr1, "计算学分").replace(subStr2, "专业排名")
+					.replace(subStr3, "平均分")
+				this.exportRank = JSON.parse(rankString) // 对象化
+				// console.log(this.exportRank)
+
+				/* 创建worksheet */
+				var ws = XLSX.utils.json_to_sheet(this.exportRank.reverse())
+
+				/* 新建空workbook，然后加入worksheet */
+				var wb = XLSX.utils.book_new()
+				XLSX.utils.book_append_sheet(wb, ws, "AllRank")
+
+				/* 生成xlsx文件 */
+				XLSX.writeFile(wb, "rank.xlsx")
 			},
 			getJwcRank() {
 				let userInfo = uni.getStorageSync('userInfo');
@@ -43,7 +60,13 @@
 							}
 						},
 						fail: (err) => {
-							console.log(err)
+							// console.log(err)
+							uni.showToast({
+								title: '服务器好像挂了诶\n要不再试一次？',
+								image: '../../../../static/image/notice/weep.png',
+								duration: 3000
+							});
+							app.noloading()
 						}
 					})
 				} else {
@@ -70,7 +93,7 @@
 </script>
 
 <style>
-	.rank_button{
+	.rank_button {
 		width: 90%;
 		margin: 10px 5%;
 		height: 30px;
@@ -78,24 +101,28 @@
 		align-items: center;
 		justify-content: center;
 	}
-.rank_item{
-	margin: 10px 10px;
-	padding: 5px;
-	background-color: #FFFFFF;
-	border-radius: 10px;
-	display: flex;
-	flex-direction: column;
-	/* align-items: center; */
-}
-.rank_item_term{
-	margin-left: 3vw;
-}
-.rank_item_info{
-	margin-top: 10px;
-	display: flex;
-	/* justify-content: center; */
-}
-.rank_item_info_text{
-	margin:0 3vw
-}
+
+	.rank_item {
+		margin: 10px 10px;
+		padding: 5px;
+		background-color: #FFFFFF;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		/* align-items: center; */
+	}
+
+	.rank_item_term {
+		margin-left: 3vw;
+	}
+
+	.rank_item_info {
+		margin-top: 10px;
+		display: flex;
+		/* justify-content: center; */
+	}
+
+	.rank_item_info_text {
+		margin: 0 3vw
+	}
 </style>

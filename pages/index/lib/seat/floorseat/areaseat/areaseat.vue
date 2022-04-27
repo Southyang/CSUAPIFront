@@ -34,6 +34,7 @@
 					method: 'GET',
 					success: (res) => {
 						// console.log(place,date)
+						console.log(res.data)
 						if (res.data.StatusCode === 1) {
 							that.area = res.data.Seat.childArea
 							// console.log(res.data.Seat)

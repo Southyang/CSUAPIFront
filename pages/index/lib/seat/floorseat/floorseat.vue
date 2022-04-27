@@ -16,7 +16,7 @@
 				</view>
 			</view>
 			<view v-if="current === 1" class="content_text">
-				<view v-for="(seat_item, index) in floor" :key="index" class="seat_item" @click="getSeatArea(seat_item.id, seat_item.name)">
+				<view v-for="(seat_item, index) in floor" :key="index" class="seat_item" @click="getSeatArea(index, seat_item.name)">
 					<view class="seat_item_name">{{seat_item.name}}</view>
 					<view>
 						<view>总数：{{seat_item.TotalCount}}</view>

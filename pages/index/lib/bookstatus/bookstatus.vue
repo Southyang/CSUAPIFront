@@ -1,6 +1,6 @@
 <template>
 	<view>
-		
+		个人座位预约情况查询
 	</view>
 </template>
 

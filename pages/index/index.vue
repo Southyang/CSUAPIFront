@@ -46,7 +46,7 @@
 						url: 'lib/seat/seat'
 					}, {
 						name: '预约记录',
-						url: ''
+						url: 'lib/bookstatus/bookstatus'
 					}]
 				}, {
 					id: 'other',

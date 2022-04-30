@@ -1,11 +1,12 @@
 <template>
 	<view>
 		<button type="primary" class="grade_button" @click="download">一键导出</button>
-		<view v-for="(grade_item, index) in grade" :key="index" class="grade_item">
+		<view v-for="(grade_item, index) in grade" :key="index" class="grade_item" @click="getDetailGrade(index)">
 			<view class="grade_item_classname">{{grade_item.ClassName}}</view>
 			<view class="grade_item_finalgrade">{{grade_item.Grade}}</view>
 			<view class="grade_item_goto">></view>
 		</view>
+		<view class="grade_tip">如果成绩没有加载出来，有可能是需要评教哦</view>
 	</view>
 </template>
 
@@ -36,7 +37,7 @@
 				gradeString = gradeString.replace(subStr, "序号").replace(subStr1, "初修学期").replace(subStr2, "获得学期")
 					.replace(subStr3, "课程").replace(subStr4, "平时成绩").replace(subStr5, "期末成绩")
 					.replace(subStr6, "总成绩").replace(subStr7, "学分").replace(subStr8, "课程属性").replace(subStr9,
-					"课程性质") // 替换为中文
+						"课程性质") // 替换为中文
 				this.exportGrade = JSON.parse(gradeString) // 对象化
 				// console.log(this.exportGrade)
 
@@ -89,6 +90,13 @@
 						}
 					})
 				}
+			},
+			getDetailGrade(index){
+				// console.log(index)
+				// console.log(this.grade[index])
+				uni.navigateTo({
+					url: `detailGrade/detailGrade?detailGrade=` + JSON.stringify(this.grade[index])
+				});
 			}
 		},
 		onLoad() {
@@ -129,5 +137,14 @@
 	.grade_item_goto {
 		position: absolute;
 		right: 12px;
+	}
+	
+	.grade_tip{
+		text-align: center;
+	}
+	
+	.grade_tip::before{
+		content:"Tip:";
+		color:#007AFF;
 	}
 </style>

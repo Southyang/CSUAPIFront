@@ -99,7 +99,7 @@
 				});
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.getJwcGrade()
 		}
 	}

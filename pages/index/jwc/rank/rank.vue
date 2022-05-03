@@ -86,7 +86,7 @@
 				}
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.getJwcRank()
 		}
 	}

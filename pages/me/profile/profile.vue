@@ -28,7 +28,8 @@
 		data() {
 			return {
 				userName:'',
-				password:''
+				password:'',
+				path:''
 			}
 		},
 		methods: {
@@ -37,14 +38,19 @@
 					userName: this.userName,
 					password: this.password,
 				});
-				// console.log("保存信息")
+				
 				uni.showToast({
 					title: '保存成功',
 					duration: 3000
 				});
+				setTimeout(function() {
+					uni.navigateBack({})
+				}, 1000);
+				
+				// console.log("保存信息")
 			},
 		},
-		onLoad() {
+		onLoad(option) {
 			let userInfo = uni.getStorageSync('userInfo');
 			this.userName = userInfo.userName
 			this.password = userInfo.password

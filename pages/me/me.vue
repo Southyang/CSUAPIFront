@@ -25,8 +25,8 @@
 		data() {
 			return {
 				userID: '123',
-				userName: '测试',
-				avatarUrl: '../../static/image/Small.png',
+				userName: '中南青年',
+				avatarUrl: '../../static/image/avatar.jpg',
 				codeurl: '#',
 				code: '',
 				username: '',
@@ -138,6 +138,7 @@
 		text-align: center;
 		background-image: url('../../static/image/Small.png');
 		background-size: 100% 100%;
+		background-color: #000000;
 	}
 
 	.me-head-pic {

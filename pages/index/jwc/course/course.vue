@@ -190,7 +190,7 @@
 			},
 			addInDate() {
 				uni.showToast({
-					title: '马上!\n4.30考完试就开发',
+					title: '做完课设就开发！',
 					image: '../../../../static/image/notice/weep.png',
 					duration: 3000
 				});
@@ -244,7 +244,7 @@
 				}
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.initWeek()
 			this.getJwcCourse()
 		}

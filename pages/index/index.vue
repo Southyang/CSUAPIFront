@@ -44,9 +44,6 @@
 					pages: [{
 						name: '座位查询',
 						url: 'lib/seat/seat'
-					}, {
-						name: '预约记录',
-						url: 'lib/bookstatus/bookstatus'
 					}]
 				}, {
 					id: 'other',

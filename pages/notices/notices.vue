@@ -79,11 +79,6 @@
 				});
 			},
 			getJwcNotice(link) {
-				// uni.showToast({
-				// 	title: '在开发了！',
-				// 	image: '../../static/image/notice/weep.png',
-				// 	duration: 3000
-				// });
 				uni.navigateTo({
 					url: `getjwcnotice/getjwcnotice?link=${link}`
 				});
@@ -147,7 +142,7 @@
 				}, 3000)
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.getNoticesList()
 			this.getJwcNoticesList()
 		}
